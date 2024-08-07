@@ -8,7 +8,7 @@
 
 /Server/node_modules
 
-
+/Server
 
 /app/(auth)
 
