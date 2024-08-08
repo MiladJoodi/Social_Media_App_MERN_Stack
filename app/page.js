@@ -1,33 +1,37 @@
-"use client"
+"use client";
 
-import Image from 'next/image'
-import { useEffect } from 'react';
-import GlobalApi from './_utils/GlobalApi';
-import { UserButton, useUser } from '@clerk/nextjs';
+import Image from "next/image";
+import { useEffect } from "react";
+import GlobalApi from "./_utils/GlobalApi";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
+  const { user } = useUser();
 
-  const {user} = useUser();
-
-  useEffect(()=>{
+  useEffect(() => {
     user && createUserProfile();
-  }, [user])
+  }, [user]);
 
-  const createUserProfile = ()=>{
-    const data={
-      name:user?.fullName,
-      email:user?.primaryEmailAddress.emailAddress,
-      image:user?.imageUrl
+  // uset to create user profile
+
+  const createUserProfile = () => {
+    if (!localStorage.getItem("isLogin")) {
+      const data = {
+        name: user?.fullName,
+        email: user?.primaryEmailAddress.emailAddress,
+        image: user?.imageUrl,
+      };
+
+      GlobalApi.createUser(data).then((resp) => {
+        console.log(resp.data);
+        localStorage.setItem("isLogin", true);
+      });
     }
+  };
 
-    GlobalApi.createUser(data).then(resp=>{
-      console.log(resp.data);
-    })
-  }
-  
   return (
-  <div>
-    <UserButton />
-  </div>
-  )
+    <div>
+      <UserButton />
+    </div>
+  );
 }
