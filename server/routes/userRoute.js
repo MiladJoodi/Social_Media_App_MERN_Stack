@@ -19,11 +19,11 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
 
-    const data = {
-        name: req.body.name,
-        email: req.body.email,
-        image: req.body.email
-    }
+    const data={
+      name:req.body.name,
+      email:req.body.email,
+      image:req.body.image
+  }
 
     const userRef = await User.findOneAndUpdate(data, data, {
         new: true,
