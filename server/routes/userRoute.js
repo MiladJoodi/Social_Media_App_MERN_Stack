@@ -13,6 +13,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get User by ID
+
 // Create user
 router.post("/", async (req, res) => {
   try {
@@ -30,6 +32,7 @@ router.post("/", async (req, res) => {
     })
 
     const userRes = await userRef.save();
+    res.status(201).json(userRes);
 
 
   } catch (error) {
