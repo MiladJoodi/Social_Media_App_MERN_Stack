@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     const data = {
         name: req.body.name,
         email: req.body.email,
-        image: req.body.name
+        image: req.body.email
     }
 
     const userRef = await User.findOneAndUpdate(data, data, {
