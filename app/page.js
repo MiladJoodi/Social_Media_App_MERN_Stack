@@ -15,9 +15,9 @@ export default function Home() {
 
   const createUserProfile = ()=>{
     const data={
-      name:user.fullName,
-      email:user.primaryEmailAddress.emailAddress,
-      image:user.imageUrl
+      name:user?.fullName,
+      email:user?.primaryEmailAddress.emailAddress,
+      image:user?.imageUrl
     }
 
     GlobalApi.createUser(data).then(resp=>{
