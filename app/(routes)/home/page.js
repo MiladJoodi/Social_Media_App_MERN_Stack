@@ -9,7 +9,9 @@ function Home() {
   
   return (
     <div className='p-5'>
-      {!user && <Banner/>}
+    {!user ? <Banner/>
+    :null  
+    }
     </div>
   )
 }
